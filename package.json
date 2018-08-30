@@ -1,0 +1,35 @@
+{
+  "name": "preact-path",
+  "version": "0.0.0",
+  "description": "A small router to preact",
+  "main": "dist/preact-path.js",
+  "umd:main": "dist/preact-path.umd.js",
+  "module": "dist/preact-path.m.js",
+  "source": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "microbundle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/uppercod/preact-path.git"
+  },
+  "keywords": [
+    "preact",
+    "router",
+    "regExp"
+  ],
+  "author": "Matias Trujillo Olivares",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uppercod/preact-path/issues"
+  },
+  "homepage": "https://github.com/uppercod/preact-path#readme",
+  "dependencies": {
+    "path-path": "^0.1.0",
+    "preact": "^8.3.1"
+  },
+  "devDependencies": {
+    "microbundle": "^0.6.0"
+  }
+}
