@@ -46,8 +46,8 @@ function App() {
                     >
                         <strong>preact-path</strong>
                     </a>
-                    , esta pensado para modularizar rutas. Crea componentes de
-                    ruta relativa, que no dependan de una raiz
+                    , It is designed to modularize routes. Create relative path
+                    components, which do not depend on a root
                 </p>
                 <Subscriber>{path => <h1>🔍 {path || "/"}</h1>}</Subscriber>
 
