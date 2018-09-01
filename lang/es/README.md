@@ -13,14 +13,14 @@ A diferencia de otros enrutadores, preact-path permite componentizar la ruta par
    <Root path="/folder-a">
        <div>
            <Root path="/folder-b">
-               <a href="./1"> Open folder 1 </a>
-               <a href="./2"> Open folder 2 </a>
-               <a href="../c"> Open folder c </a>
+               <a href="/1"> Open folder 1 </a>
+               <a href="/2"> Open folder 2 </a>
+               <a href="../"> Open folder c </a>
            </Root>
            <Root path="/folder-c">
-               <a href="./1"> Open folder 1 </a>
-               <a href="./2"> Open folder 2 </a>
-               <a href="../b"> Open folder b </a>
+               <a href="/1"> Open folder 1 </a>
+               <a href="/2"> Open folder 2 </a>
+               <a href="../"> Open folder b </a>
            </Root>
        </div>
    </Root>
