@@ -8,19 +8,19 @@ Este es un pequeño(1.33 kB gzip) grupo de componentes que facilitan la gestión
 
 **Preact-path** hace uso de la librería [**path-path**](https://github.com/uppercod/path-path), esta transforma las expreciones de ruta a una expresión regular, con ella es capaz de capturar los parámetros asociados a la ruta.
 
-### Parámetro
+### Parámetro `/:param`
 
 Mediante la expresión `/:<name_param>`, ud puede capturar un parámetro de la ruta, este es estricto ante la existencia de dicho parámetro.
 
-### Parámetro opcional
+### Parámetro opcional `/:param?`
 
 Mediante la expresión `/:<name_param>?`, ud puede capturar un parámetro de la ruta, este es opcional ante la existencia de dicho parámetro.
 
-### Parámetro opcional e ilimitado
+### Parámetro opcional e ilimitado `/:param...`
 
 Mediante la expresión `/:<name_param>...`, ud puede capturar un parámetro de la ruta, este es opcional ante la existencia de dicho parámetro, también finaliza la expresión de ruta, ya que captura todo lo que lo acompañe
 
-### Comodin **
+### Comodin `/**`
 
 mediante la expresión `/**`, ud da permiso a que cualquier parámetro de ruta entre siempre y cuando este exista.
 
@@ -40,12 +40,14 @@ render(
 )
 ```
 
-### Propiedades.
+### Propiedades
 
 |Propiedad|Tipo|Requerido|Default|Descripción|
 |:--------|:---|:--------|:------|:----------|
-| capture | Boolean | false | false | Permite capturar los eventos click |
-| history | function | false | false | Permite acceder al objeto proveedor que controla el estado de la ruta |
+| capture | Boolean | false | -- | Permite capturar los eventos click |
+| history | function | false | -- | Permite acceder al objeto proveedor que controla el estado de la ruta |
+| redirect | function | false | -- | Permite capturar las redirecciones y modificar las redirecciones | 
+
 
 ## Componente Switch
 
@@ -144,19 +146,13 @@ import {Provider,Subscriber } from "preact-path";
 
 render(
    <Provider>
-        <Subscriber path="/:param">
+        <Subscriber>
            {(path,redirect)=><h1>Route : {path}</h1>}
         </Subscriber> 
    </Provider>,
    document.querySelector("#app")
 )
 ```
-
-### Propiedades
-
-|Propiedad|Tipo|Requerido|Default|Descripción|
-|:--------|:---|:--------|:------|:----------|
-| path | string | true | -- | Permite definir si este hijo será impreso al realizar la comparación con la ruta actual |
 
 ## Componente Match
 

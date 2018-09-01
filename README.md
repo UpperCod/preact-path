@@ -1,32 +1,32 @@
 # Preact-path
 
-Este es un pequeño grupo de componentes que facilitan la gestión de rutas en aplicaciones a base de **Preact**.
+This is a small (1.33 kB gzip) group of components that facilitate route management in applications based on **Preact**.
 
-> Este componente crea un contexto que no depende de los eventos de ruta **popState** o **hashChange** , Si ud busca transmitir los cambios  de **Provider** a la ruta del navegador use la propiedad **History** para escuchar dichos cambios.
+> This component creates a context that does not depend on the route events **popState** or **hashChange**, If you want to transmit the **Provider** changes to the browser path use the ** History ** property to hear those changes.
 
-## Expresiones de ruta
+## Route expressions
 
-**Preact-path** hace uso de la librería [**path-path**](https://github.com/uppercod/path-path), esta transforma las expreciones de ruta a una expresión regular, con ella es capaz de capturar los parámetros asociados a la ruta.
+**Preact-path** makes use of the library [**path-path**](https://github.com/uppercod/path-path), this transforms the route expressions to a regular expression, with it is able to capture the parameters associated with the route.
 
-### Parámetro
+### Parameter `/:param`
 
-Mediante la expresión `/:<name_param>`, ud puede capturar un parámetro de la ruta, este es estricto ante la existencia de dicho parámetro.
+By means of the expression `/:<name_param>`, you can capture a parameter of the route, this is strict before the existence of this parameter.
 
-### Parámetro opcional
+### Optional parameter `/:param?`
 
-Mediante la expresión `/:<name_param>?`, ud puede capturar un parámetro de la ruta, este es opcional ante la existencia de dicho parámetro.
+By means of the expression `/:<name_param>?`, You can capture a parameter of the route, this is optional before the existence of this parameter.
 
-### Parámetro opcional e ilimitado
+### Optional and unlimited parameter `/:param...`
 
-Mediante la expresión `/:<name_param>...`, ud puede capturar un parámetro de la ruta, este es opcional ante la existencia de dicho parámetro, también finaliza la expresión de ruta, ya que captura todo lo que lo acompañe
+By means of the expression `/:<name_param>...`, you can capture a parameter of the route, this is optional before the existence of this parameter, it also ends the route expression, since it captures everything that goes with it.
 
-### Comodin **
+### Comodin `/**`
 
-mediante la expresión `/**`, ud da permiso a que cualquier parámetro de ruta entre siempre y cuando este exista.
+by means of the expression `/**`, you give permission for any route parameter to enter whenever it exists.
 
-## Componente Provider
+## Component `<Provider/>`
 
-Este permite crear un contexto éste será compartido por todos los componentes asociados a él.
+This allows you to create a context that will be shared by all the components associated with it.
 
 ```js
 import {Provider } from "preact-path";
@@ -40,16 +40,18 @@ render(
 )
 ```
 
-### Propiedades.
+### Propiedades
 
-|Propiedad|Tipo|Requerido|Default|Descripción|
-|:--------|:---|:--------|:------|:----------|
-| capture | Boolean | false | false | Permite capturar los eventos click |
-| history | function | false | false | Permite acceder al objeto proveedor que controla el estado de la ruta |
+| Property | Type | Required | Default | Description |
+|:---------|:-----|:---------|:--------|:------------|
+| capture | Boolean | false | -- | Allows you to capture the click events |
+| history | function | false | -- | Allows access to the provider object that controls the status of the route |
+| redirect | function | false | -- | It allows to capture the redirection and modify the redirections | 
 
-## Componente Switch
 
-Este permite definir que hijo asociado al componente será impreso ante el cambio de ruta.
+## Component `<Switch/>`
+
+This allows to define which child associated to the component will be printed before the change of route.
 
 
 ```js
@@ -69,9 +71,9 @@ render(
 )
 ```
 
-### Propiedades
+### Properties
 
-Las propiedades están asociadas no al componente `Switch` si no que as sus hijos
+Estas propiedades solo se definen a los niños del componente.
 
 |Propiedad|Tipo|Requerido|Default|Descripción|
 |:--------|:---|:--------|:------|:----------|
@@ -79,9 +81,9 @@ Las propiedades están asociadas no al componente `Switch` si no que as sus hijo
 | default | boolean | true | -- | Este debe ser asignado al último componente de la lista de hijos, permite impreso en el caso de que ningún otro lo haya sido |
 
 
-## Componente Root
+## Component `<Root/>` 
 
-Este componente permite definir una alcance de ruta para el hijo.
+This component allows defining a route scope for the child.
 
 ```js
 import {Provider,Switch,Root } from "preact-path";
@@ -102,17 +104,17 @@ render(
 )
 ```
 
-> El componente `Root`, genera un contexto que hereda del padre la propiedad **path**.
+> The `Root` component generates a context that inherits the property **path** from the parent.
 
-### Propiedades
+### Properties
 
 |Propiedad|Tipo|Requerido|Default|Descripción|
 |:--------|:---|:--------|:------|:----------|
-| path | string | true | -- | Permite definir si este hijo será impreso al realizar la comparación con la ruta actual |
+| path | string | true | -- | It allows to define if this child will be printed when making the comparison with the current route |
 
-## Componente Route
+## Componente `<Route/>`
 
-Este componente permite imprimir el hijo solo si la comparación coincide.
+This component allows you to print the child only if the comparison matches.
 
 ```js
 import {Provider,Route } from "preact-path";
@@ -127,24 +129,24 @@ render(
 )
 ```
 
-### Propiedades
+### Properties
 
 |Propiedad|Tipo|Requerido|Default|Descripción|
 |:--------|:---|:--------|:------|:----------|
-| path | string | true | -- | Permite definir si este hijo será impreso al realizar la comparación con la ruta actual |
+| path | string | true | -- | It allows to define if this child will be printed when making the comparison with the current route |
 
 
 
-## Componente Subscriber
+## Component `<Subscriber/>` 
 
-Este componente permite suscribirse a todos los cambios que despache el componente `Provider`.
+This component allows you to subscribe to all the changes that the `Provider` component sends.
 
 ```js
 import {Provider,Subscriber } from "preact-path";
 
 render(
    <Provider>
-        <Subscriber path="/:param">
+        <Subscriber>
            {(path,redirect)=><h1>Route : {path}</h1>}
         </Subscriber> 
    </Provider>,
@@ -152,15 +154,9 @@ render(
 )
 ```
 
-### Propiedades
+## Component `<Match/>`
 
-|Propiedad|Tipo|Requerido|Default|Descripción|
-|:--------|:---|:--------|:------|:----------|
-| path | string | true | -- | Permite definir si este hijo será impreso al realizar la comparación con la ruta actual |
-
-## Componente Match
-
-Este componente es de carácter estático, sólo genera una comparación entre **match** y **path**
+This component is of a static nature, it only generates a comparison between **match** and **path**
 
 ```js
 import {Provider,Match } from "preact-path";
