@@ -4,6 +4,31 @@ This is a small (1.33 kB gzip) group of components that facilitate route managem
 
 > This component creates a context that does not depend on the route events **popState** or **hashChange**, If you want to transmit the **Provider** changes to the browser path use the ** History ** property to hear those changes.
 
+## Why react-path?
+
+Unlike other routers, preact-path allows to componentize the route without knowing the general context, similar to how a relative directory operates, this is achieved through the `<Root/>` component, this allows defining a scope for the components that this contain ** Root ** can also inherit range from another **Root**.
+
+``` js
+<Provider capture={true}>
+   <Root path="/folder-a">
+       <div>
+           <Root path="/folder-b">
+               <a href="./1"> Open folder 1 </a>
+               <a href="./2"> Open folder 2 </a>
+               <a href="../c"> Open folder c </a>
+           </Root>
+           <Root path="/folder-c">
+               <a href="./1"> Open folder 1 </a>
+               <a href="./2"> Open folder 2 </a>
+               <a href="../b"> Open folder b </a>
+           </Root>
+       </div>
+   </Root>
+</Provider>
+```
+
+> The previous example only shows how internal contexts are created to limit the scope of the links associated with the `Root` component.
+
 ## Route expressions
 
 **Preact-path** makes use of the library [**path-path**](https://github.com/uppercod/path-path), this transforms the route expressions to a regular expression, with it is able to capture the parameters associated with the route.

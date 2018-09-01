@@ -4,6 +4,31 @@ Este es un pequeño(1.33 kB gzip) grupo de componentes que facilitan la gestión
 
 > Este componente crea un contexto que no depende de los eventos de ruta **popState** o **hashChange** , Si ud busca transmitir los cambios  de **Provider** a la ruta del navegador use la propiedad **History** para escuchar dichos cambios.
 
+## ¿Porque preact-path?
+
+A diferencia de otros enrutadores, preact-path permite componentizar la ruta para luego ser introducida a la aplicación pudiendo manejar la ruta sin conocer el contexto general, similar a como opera un directorio relativo, esto se logra mediante el componente `<Root/>`, este permite definir un alcance para los componentes que este contenga. **Root** también puede heredar alcance de otro **Root**.
+
+``` js
+<Provider capture={true}>
+   <Root path="/folder-a">
+       <div>
+           <Root path="/folder-b">
+               <a href="./1"> Open folder 1 </a>
+               <a href="./2"> Open folder 2 </a>
+               <a href="../c"> Open folder c </a>
+           </Root>
+           <Root path="/folder-c">
+               <a href="./1"> Open folder 1 </a>
+               <a href="./2"> Open folder 2 </a>
+               <a href="../b"> Open folder b </a>
+           </Root>
+       </div>
+   </Root>
+</Provider>
+```
+
+> El ejemplo anterior solo enseña cómo se crean contextos internos para limitar el alcance de los vínculos asociados al componente `Root`
+
 ## Expresiones de ruta
 
 **Preact-path** hace uso de la librería [**path-path**](https://github.com/uppercod/path-path), esta transforma las expreciones de ruta a una expresión regular, con ella es capaz de capturar los parámetros asociados a la ruta.
