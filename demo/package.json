@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "preact": "^8.3.1",
+    "preact-path": "^0.0.1"
+  }
+}
