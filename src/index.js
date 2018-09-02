@@ -53,7 +53,6 @@ export class Provider extends Component {
                 href = href || target.getAttribute("href");
                 root = root || target[Config.root];
                 if (href && root) {
-                    event.preventDefault();
                     break;
                 } else {
                     target =
@@ -61,7 +60,10 @@ export class Provider extends Component {
                 }
             } while (target);
 
-            if (href) this.currentProvider.redirect(join(root, href));
+            if (href && !/^(http(s){0,1}:){0,1}(\/){2}/.test(href)) {
+                event.preventDefault();
+                this.currentProvider.redirect(join(root, href));
+            }
         };
         this.base.addEventListener("click", this.handler);
     }

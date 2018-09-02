@@ -1,6 +1,6 @@
 {
   "name": "preact-path",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A small router to preact",
   "main": "dist/preact-path.js",
   "umd:main": "dist/preact-path.umd.js",
